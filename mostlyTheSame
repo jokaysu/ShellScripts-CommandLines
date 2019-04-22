@@ -1,0 +1,8 @@
+#!/bin/bash
+ta=1
+diff -i ${1} ${2} > ta
+if [ ${?} -eq 0 ] ; then
+    echo 'Mostly the same.'
+else
+    echo 'Different.'
+fi

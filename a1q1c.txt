@@ -1,0 +1,1 @@
+egrep '^....................+$' myfile.txt | head | wc -c

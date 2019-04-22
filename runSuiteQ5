@@ -1,0 +1,18 @@
+#!/bin/bash
+for word in `cat ${1}` ; do
+    tfile=$(mktemp)
+    trash=$(mktemp)
+    ./${2} < ${word}.in > "${tfile}"
+    diff ${word}.out "${tfile}" > "${trash}"
+    if [ ${?} -ne 0 ] ; then
+        echo "Test failed: ${word}"
+        echo "Input:"
+        cat ${word}.in
+        echo "Expected:"
+        cat ${word}.out
+        echo "Actual:"
+        cat "${tfile}"
+    fi
+    rm "${tfile}"
+    rm "${trash}"
+done
